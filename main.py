@@ -4,6 +4,10 @@ import asyncio
 import sys
 import traceback
 from src.cli import launch_scraper
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
