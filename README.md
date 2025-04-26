@@ -6,6 +6,8 @@ Built with:
 - [Playwright](https://playwright.dev/)
 - [Playwright-Stealth](https://github.com/AtuboDad/playwright-stealth)
 - [uv](https://docs.astral.sh/uv/) for dependency management
+- [python-dotenv](https://pypi.org/project/python-dotenv/) for environment variables
+- [rich](https://rich.readthedocs.io/) for better logging
 - Python 3.12+
 
 ---
@@ -18,6 +20,9 @@ Built with:
 - ✅ Easy to add new scrapers
 - ✅ Proxy support (future-ready)
 - ✅ Async and scalable
+- ✅ dotenv support (load config from .env)
+- ✅ Pre-commit hooks with Ruff for autoformat and auto-import sorting
+- ✅ Rich colorful logging
 
 ---
 
@@ -49,6 +54,13 @@ uv pip install -r pyproject.toml
 playwright install
 ```
 
+5. (Optional) Install pre-commit hooks:
+
+```bash
+uv add pre-commit
+pre-commit install
+```
+
 ---
 
 ## 🧩 Project Structure
@@ -59,12 +71,13 @@ scr-boilerplate-playwright/
 ├── src/
 │   ├── cli.py           # CLI runner
 │   ├── config/          # Settings
-│   ├── core/            # Browser management, page utilities, scraper base
+│   ├── core/            # Browser management, logger, scraper base
 │   └── scrapers/        # Your individual scrapers
 ├── pyproject.toml       # Dependency manager (uv)
 ├── uv.lock              # Lock file
-├── .env                 # Environment variables (optional)
+├── .env                 # Environment variables
 ├── README.md            # Project documentation
+├── .pre-commit-config.yaml  # Pre-commit configuration (if set)
 ```
 
 ---
@@ -93,6 +106,8 @@ By default, all scrapers:
 - Use **no proxy** (yet)
 
 If needed, you can later control these options dynamically per scraper by editing `main.py` and `cli.py`.
+
+Environment variables from `.env` are automatically loaded (e.g., PROXY_URL, HEADLESS).
 
 ---
 
@@ -141,6 +156,7 @@ python main.py my_new
 - Parallel scraping (multiple tabs/pages)
 - Dockerfile for easy containerization
 - Exporting scraped data (CSV, JSON, SQLite)
+- CLI argument parsing (headless, stealth, proxy flags)
 
 ---
 
