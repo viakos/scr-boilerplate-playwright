@@ -5,6 +5,7 @@ import sys
 import traceback
 from src.cli import launch_scraper
 from dotenv import load_dotenv
+from src.core.logger import logger
 
 load_dotenv()
 
@@ -17,7 +18,10 @@ if __name__ == "__main__":
     scraper_name = sys.argv[1]
 
     try:
+        logger.info("Scraper start")
         asyncio.run(launch_scraper(scraper_name))
+        logger.info("Scraper end")
     except Exception as e:
         print(f"[ERROR] {e}")
         traceback.print_exc()
+        logger.error("Something failed.")
