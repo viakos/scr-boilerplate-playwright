@@ -8,6 +8,7 @@ requires-python = ">=3.12"
 dependencies = [
     "playwright>=1.45.0",
     "playwright-stealth>=1.0.6",
+    "pre-commit>=4.2.0",
     "python-dotenv>=1.0.0",
     "setuptools>=79.0.1",
 ]
